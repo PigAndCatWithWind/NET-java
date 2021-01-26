@@ -7,7 +7,7 @@ import java.net.URL;
 public class TestUrl {
     public static void main(String[] args) throws IOException {
         //绝对路径构建
-        URL url = new URL("http://www.baidu.com:80/index.html?uname=bjsxt");
+        URL url = new URL("https://leetcode-cn.com/u/chengzixiang/");
         System.out.println("协议:"+url.getProtocol());
         System.out.println("域名:"+url.getHost());
         System.out.println("端口:"+url.getPort());
