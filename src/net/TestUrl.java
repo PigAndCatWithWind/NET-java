@@ -1,13 +1,14 @@
 package net;
 
 import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class TestUrl {
     public static void main(String[] args) throws IOException {
         //绝对路径构建
-        URL url = new URL("https://leetcode-cn.com/u/chengzixiang/");
+        URL url = new URL("https://leetcode-cn.com:80/u/chengzixiang?uname=czx&age=18#a");
         System.out.println("协议:"+url.getProtocol());
         System.out.println("域名:"+url.getHost());
         System.out.println("端口:"+url.getPort());
@@ -24,6 +25,16 @@ public class TestUrl {
         BufferedReader bufferedReader =
                 new BufferedReader(
                         new InputStreamReader(url.openStream(),"UTF-8"));
+
+        //模仿浏览器访问
+        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+        httpURLConnection.setRequestMethod("GET");
+        httpURLConnection.setRequestProperty("User-Agent","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36");
+        bufferedReader =
+                new BufferedReader(
+                        new InputStreamReader(httpURLConnection.getInputStream(),"UTF-8")
+                );
+
 
         BufferedWriter bufferedWriter =
                 new BufferedWriter(
